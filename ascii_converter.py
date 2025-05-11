@@ -95,15 +95,10 @@ class ASCIIConverter(tk.Tk):
         
         # 尝试解析输入
         try:
-            # 检查是否为十六进制格式 (0x开头或仅包含十六进制字符)
-            hex_match = re.match(r'^(0x[0-9A-Fa-f]+|[0-9A-Fa-f]+)$', input_text)
-            
-            if hex_match:
+            # 只有当输入以"0x"开头时才按十六进制解析
+            if input_text.lower().startswith('0x'):
                 # 处理十六进制输入
-                if input_text.startswith('0x'):
-                    decimal_value = int(input_text, 16)
-                else:
-                    decimal_value = int(input_text, 16)
+                decimal_value = int(input_text, 16)
             else:
                 # 处理字符输入
                 if len(input_text) == 1:
